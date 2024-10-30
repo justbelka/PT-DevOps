@@ -1,0 +1,9 @@
+---
+- name: Install And Configure Postgres 16
+  hosts: postgres-server
+  become: yes
+  
+  roles:
+    - role: InstallAndConfigPostgres16
+#  vars:
+#    db_name: 

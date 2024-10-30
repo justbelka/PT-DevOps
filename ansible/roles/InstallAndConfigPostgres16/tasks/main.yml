@@ -1,0 +1,5 @@
+---
+# tasks file for InstallAndConfigPostgres16
+# Setup/install tasks.
+
+- include_tasks: InstallAndConfigPostgres16.yml
