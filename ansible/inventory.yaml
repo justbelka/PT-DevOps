@@ -4,7 +4,7 @@ all:
   children:
     postgres-server:
       hosts:
-        192.168.149.145:
-          ansible_user: test
-          ansible_password: "test"
-          ansible_become_password: "test"
+        192.168.0.108:
+          ansible_user: "{{ main_user }}"
+          ansible_password: "{{ main_password }}"
+          ansible_become_password: "{{ main_become_password }}"
