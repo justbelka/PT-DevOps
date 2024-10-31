@@ -19,7 +19,7 @@ all:
     postgres-server:
       hosts:
         debian_host:
-          ansible_host: 192.168.0.108
+          ansible_host: 192.168.0.111
           ansible_user: "{{ main_user }}"
           ansible_password: "{{ main_password }}"
           ansible_become_password: "{{ main_become_password }}"
