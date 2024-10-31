@@ -1,0 +1,9 @@
+---
+# defaults file for debian11_config_role
+debian11_config_role_hostname: "test-hostname"
+debian11_config_role_timezone: "Europe/Moscow"
+debian11_config_role_packages:
+  - vim
+  - git
+  - curl
+  - htop

@@ -1,10 +1,7 @@
 ---
-- name: Install And Configure Postgres 16
+- name: Install And Configure Debian 11 With PostgreSQL 16
   hosts: postgres-server
-  become: yes
-  vars_files: 
-    - vars.yaml
-  
+  become: true
   roles:
-    - role: basic_debian_config
-    - role: install_and_config_postgres16
+    - role: debian11_config_role
+    - role: postgres16_config_role

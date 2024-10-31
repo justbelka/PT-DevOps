@@ -2,4 +2,4 @@
 - hosts: localhost
   remote_user: root
   roles:
-    - install_and_config_postgres16
+    - postgres16_config_role

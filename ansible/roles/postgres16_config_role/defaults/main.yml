@@ -1,0 +1,6 @@
+---
+# defaults file for postgres16_config_role
+postgres16_config_role_port: 5432
+postgres16_config_role_listen_addresses: '*'
+postgres16_config_role_max_wal_senders: 10
+postgres16_config_role_hot_standby: 'on'

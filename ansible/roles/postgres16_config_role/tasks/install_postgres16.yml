@@ -1,0 +1,58 @@
+---
+- name: Postgresql Apt Rep
+  become: true
+  ansible.builtin.apt_key:
+    url: https://www.postgresql.org/media/keys/ACCC4CF8.asc
+    state: present
+
+- name: Add Local Postgresql Rep
+  become: true
+  ansible.builtin.apt_repository:
+    repo: "deb http://apt.postgresql.org/pub/repos/apt/{{ ansible_distribution_release }}-pgdg main"
+    state: present
+
+- name: Apt Update
+  become: true
+  ansible.builtin.apt:
+    update_cache: true
+
+- name: Install Postgresql 16
+  become: true
+  ansible.builtin.apt:
+    name: postgresql-16
+    state: present
+
+- name: Set port in postgresql.conf
+  ansible.builtin.lineinfile:
+    path: "/etc/postgresql/{{ postgres16_config_role_version }}/main/postgresql.conf"
+    regexp: '^#?port'
+    line: "port={{ postgres16_config_role_port }}"
+    state: present
+
+- name: Set listen_addresses in postgresql.conf
+  ansible.builtin.lineinfile:
+    path: "/etc/postgresql/{{ postgres16_config_role_version }}/main/postgresql.conf"
+    regexp: '^#?listen_addresses'
+    line: "listen_addresses = '{{ postgres16_config_role_listen_addresses }}'"
+    state: present
+
+- name: Set max_wal_senders in postgresql.conf
+  ansible.builtin.lineinfile:
+    path: "/etc/postgresql/{{ postgres16_config_role_version }}/main/postgresql.conf"
+    regexp: '^#?max_wal_senders'
+    line: "max_wal_senders = {{ postgres16_config_role_max_wal_senders }}"
+    state: present
+
+- name: Set hot_standby in postgresql.conf
+  ansible.builtin.lineinfile:
+    path: "/etc/postgresql/{{ postgres16_config_role_version }}/main/postgresql.conf"
+    regexp: '^#?hot_standby'
+    line: "hot_standby={{ postgres16_config_role_hot_standby }}"
+    state: present
+
+- name: Start Postgresql 16
+  become: true
+  ansible.builtin.service:
+    name: postgresql
+    state: started
+    enabled: true

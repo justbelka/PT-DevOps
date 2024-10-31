@@ -1,10 +1,25 @@
 all:
-  hosts:
-    localhost
+  vars:
+    main_user: test
+    main_password: test
+    main_become_password: test
+
+    debian11_config_role_hostname: "test-hostname"
+    debian11_config_role_timezone: "Europe/Moscow"
+    debian11_config_role_packages:
+      - vim
+      - git
+      - curl
+      - htop
+
+    postgres16_config_role_version: 16
+    postgres16_config_role_port: 5433
+
   children:
     postgres-server:
       hosts:
-        192.168.0.108:
+        debian_host:
+          ansible_host: 192.168.0.108
           ansible_user: "{{ main_user }}"
           ansible_password: "{{ main_password }}"
           ansible_become_password: "{{ main_become_password }}"

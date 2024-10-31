@@ -1,0 +1,32 @@
+---
+# tasks file for debian11_config_role
+- name: Apt Update
+  ansible.builtin.apt:
+    update_cache: true
+
+- name: Apt Upgrade
+  ansible.builtin.apt:
+    upgrade: dist
+
+- name: Install Some Packages
+  ansible.builtin.apt:
+    name: "{{ debian11_packages }}"
+    state: present
+
+- name: Setting Hostname
+  ansible.builtin.hostname:
+    name: "{{ debian11_hostname }}"
+
+- name: Setting Time
+  ansible.builtin.apt:
+    name: ntp
+    state: present
+
+- name: Setting Timezone
+  community.general.timezone:
+    name: "{{ debian11_timezone }}"
+
+- name: Checking System Status
+  ansible.builtin.command: uptime
+  register: uptime_result
+  changed_when: false

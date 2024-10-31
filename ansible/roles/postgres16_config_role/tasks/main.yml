@@ -1,0 +1,6 @@
+---
+# tasks file for postgres16_config_role
+# Setup/install tasks.
+
+- name: Include PostgreSQL 16 Installation Tasks
+  ansible.builtin.include_tasks: install_postgres16.yml
