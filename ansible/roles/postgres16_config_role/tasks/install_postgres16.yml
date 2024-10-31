@@ -28,6 +28,7 @@
     regexp: '^#?port'
     line: "port={{ postgres16_config_role_port }}"
     state: present
+  notify: Restart PostgreSQL
 
 - name: Set listen_addresses in postgresql.conf
   ansible.builtin.lineinfile:
@@ -35,6 +36,7 @@
     regexp: '^#?listen_addresses'
     line: "listen_addresses = '{{ postgres16_config_role_listen_addresses }}'"
     state: present
+  notify: Restart PostgreSQL
 
 - name: Set max_wal_senders in postgresql.conf
   ansible.builtin.lineinfile:
@@ -42,6 +44,7 @@
     regexp: '^#?max_wal_senders'
     line: "max_wal_senders = {{ postgres16_config_role_max_wal_senders }}"
     state: present
+  notify: Restart PostgreSQL
 
 - name: Set hot_standby in postgresql.conf
   ansible.builtin.lineinfile:
@@ -49,10 +52,4 @@
     regexp: '^#?hot_standby'
     line: "hot_standby={{ postgres16_config_role_hot_standby }}"
     state: present
-
-- name: Start Postgresql 16
-  become: true
-  ansible.builtin.service:
-    name: postgresql
-    state: started
-    enabled: true
+  notify: Restart PostgreSQL

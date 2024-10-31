@@ -4,7 +4,7 @@ all:
     main_password: test
     main_become_password: test
 
-    debian11_config_role_hostname: "test-hostname"
+    debian11_config_role_hostname: "{{ inventory_hostname }}"
     debian11_config_role_timezone: "Europe/Moscow"
     debian11_config_role_packages:
       - vim
@@ -18,8 +18,8 @@ all:
   children:
     postgres-server:
       hosts:
-        debian_host:
-          ansible_host: 192.168.0.111
+        debian-host:
+          ansible_host: 192.168.0.107
           ansible_user: "{{ main_user }}"
           ansible_password: "{{ main_password }}"
           ansible_become_password: "{{ main_become_password }}"

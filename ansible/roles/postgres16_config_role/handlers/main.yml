@@ -1,2 +1,8 @@
 ---
 # handlers file for postgres16_config_role
+- name: Restart PostgreSQL
+  become: true
+  ansible.builtin.service:
+    name: postgresql
+    state: restarted
+    enabled: true

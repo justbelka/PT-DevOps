@@ -1,0 +1,26 @@
+.photo-block {
+    display: flex;
+    gap: 20px;
+}
+
+.photo {
+    background-size: cover;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-image: url('../images/belokrylov.JPG');
+}
+
+div.text-block {
+    padding-left: 20%;
+    padding-right: 20%;
+}
+
+p.text-block {
+    text-align: left;
+}
+
+.logout-button {
+    margin: 0 auto;
+    max-width: 300px;
+}
